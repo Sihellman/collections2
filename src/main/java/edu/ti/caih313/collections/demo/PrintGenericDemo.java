@@ -4,7 +4,7 @@ import edu.ti.caih313.collections.dataobj.Name;
 
 import java.util.*;
 
-public class PrintGenericDemo<T> {
+public class  PrintGenericDemo<T> {
     public static void main(String[] args) {
         PrintGeneric<String> stringSortDemo = new PrintGeneric<>();
 
