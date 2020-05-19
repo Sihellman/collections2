@@ -10,10 +10,10 @@ import static edu.ti.caih313.collections.dataobj.Person.Gender.*;
 public class PrintPersonCollectionDemo {
 
     public static void main(String[] args) {
-        Person bob = new Person(new Name("Bob", "Smith"), "male", 1);
-        Person jane = new Person(new Name("Jane", "Doe"), "female", 2);
-        Person ironMan = new Person(new Name("Tony", "Stark"), "male", 3);
-        Person boPeep = new Person(new Name("Bo", "Peep"), "female", 4);
+        Person bob = new Person(new Name("Bob", "Smith"), 1, MALE);
+        Person jane = new Person(new Name("Jane", "Doe"), 2, FEMALE);
+        Person ironMan = new Person(new Name("Tony", "Stark"), 3, MALE);
+        Person boPeep = new Person(new Name("Bo", "Peep"), 4, FEMALE);
 
         List<Person> personList = new ArrayList<>();
         personList.add(bob);

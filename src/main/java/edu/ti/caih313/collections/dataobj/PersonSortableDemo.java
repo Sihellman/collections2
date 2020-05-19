@@ -10,11 +10,12 @@ import static edu.ti.caih313.collections.dataobj.Person.Gender.MALE;
 public class PersonSortableDemo {
     public static void main(String[] args) {
         Person personArray[] = {
-                new Person(new Name("Bob", "Smith"), "male", 1),
-                new Person(new Name("Jane", "Doe"), "female", 10),
-                new Person(new Name("Tony", "Stark"), "male", 10),
-                new Person(new Name("Bo", "Peep"), "female", 5),
-                new Person(new Name("Goon", "Deep"), "female", 5)
+                new Person(new Name("Bob", "Smith"), 1, MALE),
+                new Person(new Name("Jane", "Doe"),  10, FEMALE),
+                new Person(new Name("Tony", "Stark"), 10, MALE),
+                new Person(new Name("Bo", "Peep"), 5, FEMALE),
+                new Person(new Name("Goon", "Deep"), 5, FEMALE)
+
         };
 
         List<Person> personList = Arrays.asList(personArray);
@@ -24,16 +25,18 @@ public class PersonSortableDemo {
         Comparator<Person> listComparator = new Comparator<Person>() {
             @Override
             public int compare(Person n1, Person n2) {
-                int personOrder;
-                if (n1.getAge() - n2.getAge() > 0) {
-                    personOrder = -1;
-                } else if (n1.getAge() - n2.getAge() < 0) {
-                    personOrder = 1;
-                } else {
-                    personOrder = 0;
-                }
+                double personOrder = n2.getAge() - n1.getAge();
+
                 if (personOrder == 0) {
-                    personOrder = n1.getGender().compareTo(n2.getGender());
+                    if (n1.getGender() == n2.getGender()){
+                        personOrder = 0;
+                    }
+                    else if(n2.getGender() == Person.Gender.FEMALE){
+                        personOrder = 1;
+                    }
+                    else{
+                        personOrder = -1;
+                    }
                     if (personOrder == 0){
                         personOrder = n1.getName().getLastName().compareTo(n2.getName().getLastName());
                         if (personOrder == 0){
@@ -41,7 +44,7 @@ public class PersonSortableDemo {
                         }
                     }
                 }
-                return personOrder;
+                return (int)personOrder;
             }
         };
         Collections.sort(personList, listComparator);

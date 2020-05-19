@@ -1,36 +1,31 @@
 package edu.ti.caih313.collections.dataobj;
 
+
+
 import java.util.Objects;
 
 public class Person {
     private Name name;
-    private String gender;
+    private Gender gender;
     private double age;
     private String emailAddress;
 
-    public enum Gender {MALE("male"), FEMALE("female");
-        String gender;
-        Gender(String gender) {
-            this.gender = gender;
-        }
-    }
+    public enum Gender {MALE, FEMALE}
 
-    public Person(Name name, String gender, double age) {
+    public Person(Name name, double age, Gender gender) {
         this.name = name;
-        this.gender = gender;
         this.age = age;
+        this.gender = gender;
     }
-
+    public Gender getGender(){
+        return gender;
+    }
     public Name getName() {
         return name;
     }
 
     public void setName(Name name) {
         this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
     }
 
     public double getAge() {
@@ -55,7 +50,7 @@ public class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return name.equals(person.name) &&
-                gender.equals(person.gender) &&
+                gender == person.gender &&
                 age == person.age;
     }
 

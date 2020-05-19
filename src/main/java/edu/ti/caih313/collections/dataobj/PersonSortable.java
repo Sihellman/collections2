@@ -1,21 +1,23 @@
 package edu.ti.caih313.collections.dataobj;
 
 public class PersonSortable extends Person implements Comparable<PersonSortable> {
-    public PersonSortable(int age, Name name, String gender){
-        super(name, gender, age);
+    public PersonSortable(Name name, int age, Gender gender){
+        super(name, age, gender);
     }
     @Override
-    public int compareTo(PersonSortable otherPersonSortable) {//subtract them
-        int personOrder;
-        if (getAge() - otherPersonSortable.getAge() > 0) {
-            personOrder = -1;
-        } else if (getAge() - otherPersonSortable.getAge() < 0) {
-            personOrder = 1;
-        } else {
-            personOrder = 0;
-        }
+    public int compareTo(PersonSortable otherPersonSortable) {
+        double personOrder = otherPersonSortable.getAge() - getAge();
+
         if (personOrder == 0) {
-            personOrder = getGender().compareTo(otherPersonSortable.getGender());
+            if (getGender() == otherPersonSortable.getGender()){
+                personOrder = 0;
+            }
+            else if(otherPersonSortable.getGender() == Gender.FEMALE){
+                personOrder = 1;
+            }
+            else{
+                personOrder = -1;
+            }
             if (personOrder == 0){
                 personOrder = getName().getLastName().compareTo(otherPersonSortable.getName().getLastName());
                 if (personOrder == 0){
@@ -23,6 +25,8 @@ public class PersonSortable extends Person implements Comparable<PersonSortable>
                 }
             }
         }
-        return personOrder;
+        return (int)personOrder;
     }
+
+
 }
